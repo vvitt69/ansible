@@ -1,0 +1,24 @@
+---
+
+- name: update all, except critical
+  hosts: all:!critical
+  remote_user: "{{ the_remote_user }}"
+  become: "{{ do_become }}"
+  roles:
+    - full_upgrade
+    - bash_settings
+    - standard_apps_common
+
+- name: install standard apps desktop
+  hosts: desktop
+  remote_user: "{{ the_remote_user }}"
+  become: "{{ do_become }}"
+  roles:
+    - standard_apps_desktop
+
+- name: install node.js
+  hosts: nodejs 
+  remote_user: "{{ the_remote_user }}"
+  become: "{{ do_become }}"
+  roles:
+    - nodejs
