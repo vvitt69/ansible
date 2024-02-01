@@ -1,0 +1,21 @@
+---
+
+- name: install standard console packages
+  apt:
+   name: "{{ item }}"
+   state: present
+  loop:
+     - aptitude
+     - curl
+     - exa
+     - git
+     - bpytop
+     - make
+     - ncdu
+     - duf
+     - neofetch
+     - vim
+     - ranger
+     - sudo
+     - tmux
+

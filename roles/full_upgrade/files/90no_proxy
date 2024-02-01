@@ -1,0 +1,1 @@
+# Acquire::http { Proxy "http://x.x.x.x:3142"; };

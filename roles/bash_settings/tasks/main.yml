@@ -1,0 +1,31 @@
+---
+
+- name: copy bashrc
+  copy:
+    src: bashrc
+    dest: "{{ home_dir }}/.bashrc"
+    owner: "{{ the_remote_user }}" 
+    group: "{{ the_remote_user }}" 
+    mode: 0660
+
+- name: copy bash aliases
+  copy:
+    src: bash_aliases
+    dest: "{{ home_dir }}/.bash_aliases"
+    owner: "{{ the_remote_user }}" 
+    group: "{{ the_remote_user }}" 
+    mode: 0660
+
+- name: copy spacevim.sh 
+  copy:
+    src: spacevim.sh
+    dest: "{{ home_dir }}/spacevim.sh"
+    owner: "{{ the_remote_user }}" 
+    group: "{{ the_remote_user }}" 
+    mode: 0770
+  register: new_spacevim
+
+- name: run spacevim install script
+  script: ./files/spacevim.sh 
+  remote_user: "{{ the_remote_user }}" 
+  when: new_spacevim is changed
